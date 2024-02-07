@@ -8,7 +8,7 @@ export function createHeader() {
     header.id = 'header-container';
     appLogo.id = 'app-logo'
 
-    appTitle.textContent = 'Dilligent';
+    appTitle.textContent = 'Dilligence';
 
     header.appendChild(headerTag);
     headerTag.appendChild(divOne);

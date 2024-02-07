@@ -5,7 +5,13 @@
 
     --app-primary-color: #2563eb;
     --app-secondary-dark-color: #1e40af;
+    --form-element-outline-color: #b0b0b0;
+    --form-element-text-color: #808080;
     --box-shadow-color: rgb(144, 144, 144);
+
+    --high-priority-color: #ff2e2e;
+    --medium-priority-color: #ffc800;
+    --low-priority-color: #00ff6a;
 }
 
 @font-face {
@@ -24,7 +30,7 @@
 }
 
 #sidebar {
-    width: max(25%, 400px);
+    width: max(25%, 600px);
     background-color: var(--app-primary-color);
     box-shadow: 5px 0px 15px 0px var(--box-shadow-color);
 }
@@ -128,6 +134,6 @@ nav span {
 }
 
 #main-content { 
-    padding: 4rem;
     width: 100%;
+    padding: 4rem;
 }

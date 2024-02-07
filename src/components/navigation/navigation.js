@@ -1,4 +1,8 @@
+import { getTaskDialog } from "../dialogs/taskDialog";
+import '../../styles/index.css'
+
 export function createNavigation() {
+    //Creating all navigation elements
     const navigation = document.createElement('div');
     const navigationTag = document.createElement('nav');
 
@@ -17,25 +21,29 @@ export function createNavigation() {
     const addListButton = document.createElement('button');
     const listContainer = document.createElement('div');
 
+    //Assigning id selectors to nav elements
     navigation.id = 'navigation-container';
-
     taskNavigation.id = 'task-navigation';
+    addTaskButton.id = 'add-task-button';
+    listContainer.id = 'list-container';
+
+    //Assigning class selectors to nav elements
     taskField.classList.add('add-field');
     taskButton.classList.add('start-button');
     addTaskButtonContainer.classList.add('add-button-container');
     addTaskButton.classList.add('add-button');
-    
     listField.classList.add('add-field');
     listButton.classList.add('start-button');
     addListButtonContainer.classList.add('add-button-container');
     addListButton.classList.add('add-button');
-    listContainer.id = 'list-container';
-
+   
+    //Assigning text values to nav elements
     taskButton.textContent = 'Tasks';
     todayButton.textContent = 'Today';
     thisWeekButton.textContent = 'This Week';
     listButton.textContent = 'Lists';
 
+    //Creating the navigation structure
     navigation.appendChild(navigationTag);
     navigationTag.appendChild(taskNavigation);
     navigationTag.appendChild(listNavigation);
@@ -54,6 +62,11 @@ export function createNavigation() {
     listField.appendChild(listButton);
     listField.appendChild(addListButtonContainer);
     addListButtonContainer.appendChild(addListButton);
+
+    //Adding Event listeners to buttons 
+    addTaskButton.addEventListener('click', () => {
+        getTaskDialog().showModal();
+    });
 
     return navigation;
 }

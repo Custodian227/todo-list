@@ -1,6 +1,6 @@
 export function createMainContent() {
     const main = document.createElement('div');
-    main.id = 'main-contant';
+    main.id = 'main-content';
 
     return main;
 }
