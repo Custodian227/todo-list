@@ -1,5 +1,6 @@
 import { currentTaskIndex, incrementCurrentTaskIndex, todoTaskPanels, todoTasks } from '../../data/data';
 import { createTask } from '../../factories/task';
+import { formatDueDate } from '../../helpers/date';
 import '../../styles/taskDialog.css';
 import { getMainContent } from '../main/main';
 import { createTaskPanel } from '../task/taskPanel';
@@ -169,9 +170,9 @@ export function createTaskDialog() {
     addTaskButton.addEventListener('click', () => {
         let taskTitle = titleInput.value;
         let taskDescription = descriptionArea.value;
-        let taskDueDate = dueDateInput.value;
+        let taskDueDate =  formatDueDate(dueDateInput.value);
         let taskPriority = prioritySelect.value;
- 
+
         //Creating a task object
         const task = createTask(currentTaskIndex, taskTitle, taskDescription, taskDueDate, taskPriority);
         todoTasks.push(task);
@@ -183,7 +184,7 @@ export function createTaskDialog() {
         incrementCurrentTaskIndex();
 
         getMainContent().appendChild(panel);
-    })
+    });
 
     return taskDialog;
 }

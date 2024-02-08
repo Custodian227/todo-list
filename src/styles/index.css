@@ -36,7 +36,7 @@
 }
 
 #header-container {
-    padding: 2rem;
+    padding: 1rem;
     font-size: 1.5rem;
     color: white;
     font-family: Dosis-SemiBold;
@@ -70,7 +70,7 @@ nav button {
 }
 
 #navigation-container {
-    padding: 2rem 4rem;
+    padding: 2rem 1rem;
 }
 
 #task-navigation {

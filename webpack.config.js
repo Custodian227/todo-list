@@ -32,7 +32,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'ToDoligence',
+            title: 'Dilligence',
         }),
     ],
 };

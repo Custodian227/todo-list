@@ -1,4 +1,6 @@
 import '../../styles/taskPanel.css';
+import { createTaskDetailsDialog } from '../dialogs/taskDetailsDialog';
+
 
 export function createTaskPanel(task) {
     const panel = document.createElement('div');
@@ -30,7 +32,8 @@ export function createTaskPanel(task) {
 
     //Assigning class selectors to panel elements
     editButton.classList.add('mid');
-    priorityStripe.classList.add('high-priority');
+    detailsButton.classList.add('top');
+    deleteButton.classList.add('bottom');
 
     //Appending task attributes to the panel;
     taskTitle.textContent = task.title;
@@ -48,6 +51,14 @@ export function createTaskPanel(task) {
 
     //Connecting the panel to the task
     panel.dataset.id = task.id;
+
+    //Attaching event listeners to the utility buttons
+    detailsButton.addEventListener('click', () => {
+        const taskDetailsDialog = createTaskDetailsDialog(task);
+        document.body.appendChild(taskDetailsDialog);
+        
+        taskDetailsDialog.showModal();
+    });
 
     //Creating the structure of the panel
     panel.appendChild(priorityStripe);
