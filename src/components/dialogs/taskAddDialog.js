@@ -203,5 +203,5 @@ function clearAddTaskForm(titleInput, descriptionArea, dueDateInput, prioritySel
     titleInput.value = '';
     descriptionArea.value = '';
     dueDateInput.value = '';
-    prioritySelect.value = '';
+    prioritySelect.value = 'High';
 }

@@ -1,4 +1,5 @@
 import '../../styles/taskPanel.css';
+import { createTaskDeleteDialog } from '../dialogs/taskDeleteDialog';
 import { createTaskDetailsDialog } from '../dialogs/taskDetailsDialog';
 import { createEditTaskDialog } from '../dialogs/taskEditDialog';
 
@@ -66,6 +67,13 @@ export function createTaskPanel(task) {
         document.body.appendChild(editTaskDialog);
 
         editTaskDialog.showModal();
+    });
+
+    deleteButton.addEventListener('click', () => {
+        const deleteTaskDialog = createTaskDeleteDialog(task);
+        document.body.appendChild(deleteTaskDialog);
+
+        deleteTaskDialog.showModal();
     });
 
     //Creating the structure of the panel

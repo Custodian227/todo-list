@@ -79,12 +79,14 @@
 
 .top {
     border-radius: 0px 5px 0px 0px;
-    background-image: url(../assets/icons/icons8-details-64.png);
+    background-image: url(../assets/icons/icons8-details.png);
     background-size: contain;
 }
 
 .bottom {
     border-radius: 0px 0px 5px 0px;
+    background-image: url(../assets/icons/icons8-delete.png);
+    background-size: contain;
 }
 
 
