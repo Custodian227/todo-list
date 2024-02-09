@@ -1,11 +1,11 @@
+import '../../styles/taskAddDialog.css';
 import { currentTaskIndex, incrementCurrentTaskIndex, todoTaskPanels, todoTasks } from '../../data/data';
 import { createTask } from '../../factories/task';
-import { formatDueDate } from '../../helpers/date';
-import '../../styles/taskDialog.css';
+import { formatDisplayDueDate } from '../../helpers/date';
 import { getMainContent } from '../main/main';
 import { createTaskPanel } from '../task/taskPanel';
 
-export function createTaskDialog() {
+export function createAddTaskDialog() {
     //Creating all dialog elements
     const taskDialog = document.createElement('dialog');
     const form = document.createElement('form');
@@ -41,7 +41,6 @@ export function createTaskDialog() {
     const lowPriorityBox = document.createElement('div');
 
     const prioritySelect = document.createElement('select');
-    const defaultOption = document.createElement('option');
     const highPriorityOption = document.createElement('option');
     const mediumPriorityOption = document.createElement('option');
     const lowPriorityOption = document.createElement('option');
@@ -85,15 +84,16 @@ export function createTaskDialog() {
     priorityLabel.name = 'priority';
     prioritySelect.name = 'priority';
 
-    defaultOption.disabled = 'true';
-    defaultOption.selected = 'true';
-    defaultOption.text = '--Priority--';
     highPriorityOption.textContent = 'High';
     mediumPriorityOption.textContent = 'Medium';
     lowPriorityOption.textContent = 'Low';
 
+    highPriorityOption.value = 'High';
+    mediumPriorityOption.value = 'Medium';
+    lowPriorityOption.value = 'Low';
+
     addTaskButton.type = 'submit';
-    resetFormButton.type = 'clear';
+    resetFormButton.type = 'reset';
 
     //Assignment of id selectors to dialog elements 
     taskDialog.id = 'add-task-dialog';
@@ -110,10 +110,10 @@ export function createTaskDialog() {
     addTaskButton.id = 'add-task-button';
 
     //Assignment of class selectors to dialog elements
-    titleField.classList.add('field');
-    descriptionField.classList.add('field');
-    dueDateField.classList.add('field');
-    priorityField.classList.add('field');
+    titleField.classList.add('add-field');
+    descriptionField.classList.add('add-field');
+    dueDateField.classList.add('add-field');
+    priorityField.classList.add('add-field');
     titleLabel.classList.add('label-margin');
     descriptionLabel.classList.add('label-margin');
     dueDateLabel.classList.add('label-margin');
@@ -158,7 +158,6 @@ export function createTaskDialog() {
     priorityBoxContainer.appendChild(mediumPriorityBox);
     priorityBoxContainer.appendChild(lowPriorityBox);
 
-    prioritySelect.appendChild(defaultOption);
     prioritySelect.appendChild(highPriorityOption);
     prioritySelect.appendChild(mediumPriorityOption);
     prioritySelect.appendChild(lowPriorityOption);
@@ -170,7 +169,7 @@ export function createTaskDialog() {
     addTaskButton.addEventListener('click', () => {
         let taskTitle = titleInput.value;
         let taskDescription = descriptionArea.value;
-        let taskDueDate =  formatDueDate(dueDateInput.value);
+        let taskDueDate =  formatDisplayDueDate(dueDateInput.value);
         let taskPriority = prioritySelect.value;
 
         //Creating a task object
@@ -183,7 +182,14 @@ export function createTaskDialog() {
 
         incrementCurrentTaskIndex();
 
+        clearAddTaskForm(titleInput, descriptionArea, dueDateInput, prioritySelect);
+
         getMainContent().appendChild(panel);
+    });
+
+    closeDialogButton.addEventListener('click', () => {
+        taskDialog.close();
+        clearAddTaskForm(titleInput, descriptionArea, dueDateInput, prioritySelect);
     });
 
     return taskDialog;
@@ -191,4 +197,11 @@ export function createTaskDialog() {
 
 export function getTaskDialog() {
     return document.querySelector('#add-task-dialog');
+}
+
+function clearAddTaskForm(titleInput, descriptionArea, dueDateInput, prioritySelect) {
+    titleInput.value = '';
+    descriptionArea.value = '';
+    dueDateInput.value = '';
+    prioritySelect.value = '';
 }

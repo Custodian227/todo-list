@@ -9,3 +9,7 @@ export function incrementCurrentTaskIndex() {
     currentTaskIndex++;
 }
 
+export function getTaskById(id) {
+    return todoTasks[i];
+}
+

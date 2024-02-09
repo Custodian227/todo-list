@@ -73,11 +73,13 @@
 #utility-container .mid {
     border-top: 1px solid white;
     border-bottom: 1px solid white;
+    background-image: url(../assets/icons/icons8-edit.png);
+    background-size: contain;
 }
 
 .top {
     border-radius: 0px 5px 0px 0px;
-    background-image: url(../assets/icons/icons8-details.png);
+    background-image: url(../assets/icons/icons8-details-64.png);
     background-size: contain;
 }
 
@@ -85,17 +87,7 @@
     border-radius: 0px 0px 5px 0px;
 }
 
-.high-priority {
-    background-color: var(--high-priority-color);
-}
 
-.medium-priority {
-    background-color: var(--medium-priority-color);
-}
-
-.low-priority {
-    background-color: var(--low-priority-color);
-}
 
 
 

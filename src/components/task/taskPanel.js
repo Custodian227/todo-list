@@ -1,5 +1,6 @@
 import '../../styles/taskPanel.css';
 import { createTaskDetailsDialog } from '../dialogs/taskDetailsDialog';
+import { createEditTaskDialog } from '../dialogs/taskEditDialog';
 
 
 export function createTaskPanel(task) {
@@ -40,13 +41,13 @@ export function createTaskPanel(task) {
     taskDueDate.textContent = task.dueDate;
 
     if(task.priority == 'High') {
-        priorityStripe.classList.add('high-priority');
+        priorityStripe.style.backgroundColor = 'var(--high-priority-color)';
     }
     if(task.priority == 'Medium') {
-        priorityStripe.classList.add('medium-priority');
+        priorityStripe.style.backgroundColor = 'var(--medium-priority-color)';
     }
     if(task.priority == 'Low') {
-        priorityStripe.classList.add('low-priority');
+        priorityStripe.style.backgroundColor = 'var(--low-priority-color)';
     }
 
     //Connecting the panel to the task
@@ -58,6 +59,13 @@ export function createTaskPanel(task) {
         document.body.appendChild(taskDetailsDialog);
         
         taskDetailsDialog.showModal();
+    });
+
+    editButton.addEventListener('click', () => {
+        const editTaskDialog = createEditTaskDialog(task);
+        document.body.appendChild(editTaskDialog);
+
+        editTaskDialog.showModal();
     });
 
     //Creating the structure of the panel

@@ -50,10 +50,10 @@ export function createTaskDetailsDialog(task) {
     priorityValueContainer.id = 'priority-value-container';
 
     //Assignmet of class selectors to dialog elements
-    titleField.classList.add('flex-field');
-    descriptionField.classList.add('field');
-    dueDateField.classList.add('flex-field');
-    priorityField.classList.add('flex-field');
+    titleField.classList.add('details-flex-field');
+    descriptionField.classList.add('details-field');
+    dueDateField.classList.add('details-flex-field');
+    priorityField.classList.add('details-flex-field');
     titleLabelContainer.classList.add('label-container');
     titleValueContainer.classList.add('value-container');
     descriptionLabelContainer.classList.add('label-container');

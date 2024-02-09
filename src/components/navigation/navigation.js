@@ -1,4 +1,4 @@
-import { getTaskDialog } from "../dialogs/taskDialog";
+import { getTaskDialog } from "../dialogs/taskAddDialog";
 import '../../styles/index.css'
 
 export function createNavigation() {
@@ -28,11 +28,11 @@ export function createNavigation() {
     listContainer.id = 'list-container';
 
     //Assigning class selectors to nav elements
-    taskField.classList.add('add-field');
+    taskField.classList.add('nav-add-field');
     taskButton.classList.add('start-button');
     addTaskButtonContainer.classList.add('add-button-container');
     addTaskButton.classList.add('add-button');
-    listField.classList.add('add-field');
+    listField.classList.add('nav-add-field');
     listButton.classList.add('start-button');
     addListButtonContainer.classList.add('add-button-container');
     addListButton.classList.add('add-button');

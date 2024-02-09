@@ -54,7 +54,7 @@
     color: var(--app-primary-color);
 }
 
-.field {
+.add-field {
     display: flex;
     flex-direction: column;
     font-size: 2rem;
@@ -62,7 +62,7 @@
     color: var(--form-element-text-color);
 }
 
-.field textarea {
+.add-field textarea {
     font-family: Dosis-Medium;
     font-size: 1.2rem;
     border-style: none;
