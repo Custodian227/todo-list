@@ -103,7 +103,7 @@ nav button {
 
 #list-container {
     height: 16rem;
-    padding: 2rem 0rem 2rem 4rem;
+    padding: 2rem 4rem 2rem 4rem;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -112,7 +112,7 @@ nav button {
 }
 
 nav span {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     font-family: Dosis-Medium;
 }
 

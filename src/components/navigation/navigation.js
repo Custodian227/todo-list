@@ -1,5 +1,8 @@
 import { getTaskDialog } from "../dialogs/taskAddDialog";
 import '../../styles/index.css'
+import { getAddListDialog } from "../dialogs/listAddDialog";
+import { getMainContent } from "../main/main";
+import { todoListPanels } from "../../data/data";
 
 export function createNavigation() {
     //Creating all navigation elements
@@ -68,5 +71,23 @@ export function createNavigation() {
         getTaskDialog().showModal();
     });
 
+    listButton.addEventListener('click', () => {
+        const mainContent = getMainContent();
+
+        mainContent.textContent = '';
+
+        todoListPanels.forEach(panel => {
+            mainContent.appendChild(panel);
+        });
+    });
+
+    addListButton.addEventListener('click', () => {
+        getAddListDialog().showModal()
+    });
+
     return navigation;
+}
+
+export function getNavListContainer() {
+    return document.querySelector('#list-container');
 }

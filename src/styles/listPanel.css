@@ -1,0 +1,68 @@
+@font-face {
+    font-family: Dosis-Medium;
+    src: url(../fonts/Dosis/static/Dosis-Medium.ttf);
+}
+
+#panel-container {
+    display: flex;
+    width: 100%;
+    box-shadow: 0px 2px 10px 0px var(--box-shadow-color);
+    font-family: Dosis-Medium;
+    color: var(--form-element-text-color);
+    margin-bottom: 2rem;
+    border-radius: 5px;
+}
+
+#panel-container > div {
+    min-height: 6rem;
+}
+
+#list-title-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0rem 2rem;
+    font-size: 1.2rem;
+}
+
+#list-title-container h3 {
+    width: 100%;
+    word-wrap: break-word;
+}
+
+#utility-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#utility-container > button{
+    width: 30px;
+    flex: 1;
+    background-color: var(--app-primary-color);
+    border-style: none;
+}
+
+#utility-container .mid {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    background-image: url(../assets/icons/icons8-edit.png);
+    background-size: contain;
+}
+
+.top {
+    border-radius: 0px 5px 0px 0px;
+    background-image: url(../assets/icons/icons8-details.png);
+    background-size: contain;
+}
+
+.bottom {
+    border-radius: 0px 0px 5px 0px;
+    background-image: url(../assets/icons/icons8-delete.png);
+    background-size: contain;
+}
+
+
+
+
+
+
