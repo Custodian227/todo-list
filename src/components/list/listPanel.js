@@ -1,4 +1,5 @@
 import '../../styles/listPanel.css';
+import { createListDetailsDialog } from '../dialogs/listDetailsDialog';
 
 export function createListPanel(list) {
     const panel = document.createElement('div');
@@ -27,6 +28,14 @@ export function createListPanel(list) {
 
     //Connecting the panel to the list
     panel.dataset.id = list.id;
+
+    //Attaching event listeners to the utility buttons
+    detailsButton.addEventListener('click', () => {
+        const listDetailsDialog = createListDetailsDialog(list);
+        document.body.appendChild(listDetailsDialog);
+        
+        listDetailsDialog.showModal();
+    });
 
     //Creating the structure of the panel
     panel.appendChild(listTitleContainer);
