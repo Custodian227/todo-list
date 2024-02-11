@@ -1,5 +1,6 @@
 import '../../styles/listPanel.css';
 import { createListDetailsDialog } from '../dialogs/listDetailsDialog';
+import { createEditListDialog } from '../dialogs/listEditDialog';
 
 export function createListPanel(list) {
     const panel = document.createElement('div');
@@ -35,6 +36,13 @@ export function createListPanel(list) {
         document.body.appendChild(listDetailsDialog);
         
         listDetailsDialog.showModal();
+    });
+
+    editButton.addEventListener('click', () => {
+        const listEditDialog = createEditListDialog(list);
+        document.body.appendChild(listEditDialog);
+
+        listEditDialog.showModal();
     });
 
     //Creating the structure of the panel

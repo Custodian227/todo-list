@@ -2,7 +2,7 @@ import { getTaskDialog } from "../dialogs/taskAddDialog";
 import '../../styles/index.css'
 import { getAddListDialog } from "../dialogs/listAddDialog";
 import { getMainContent } from "../main/main";
-import { todoListPanels } from "../../data/data";
+import { todoListPanels, todoTaskPanels } from "../../data/data";
 
 export function createNavigation() {
     //Creating all navigation elements
@@ -67,13 +67,21 @@ export function createNavigation() {
     addListButtonContainer.appendChild(addListButton);
 
     //Adding Event listeners to buttons 
+    taskButton.addEventListener('click', () => {
+        const mainContent = getMainContent();
+        mainContent.textContent = '';
+
+        todoTaskPanels.forEach(panel => {
+            mainContent.appendChild(panel);
+        });
+    });
+
     addTaskButton.addEventListener('click', () => {
         getTaskDialog().showModal();
     });
 
     listButton.addEventListener('click', () => {
         const mainContent = getMainContent();
-
         mainContent.textContent = '';
 
         todoListPanels.forEach(panel => {

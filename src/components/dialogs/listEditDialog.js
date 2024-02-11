@@ -1,11 +1,8 @@
-import { currentListIndex, incrementCurrentListIndex, todoListPanels, todoLists } from '../../data/data';
-import { createList } from '../../factories/list';
-import '../../styles/listAddDialog.css';
-import { createListPanel } from '../list/listPanel';
-import { getMainContent } from '../main/main';
+import '../../styles/listEditDialog.css';
+import { todoListPanels, todoLists } from "../../data/data";
 import { getNavListContainer } from '../navigation/navigation';
 
-export function createAddListDialog() {
+export function createEditListDialog(list) {
     //Creating all dialog elements
     const listDialog = document.createElement('dialog');
     const form = document.createElement('form');
@@ -24,43 +21,42 @@ export function createAddListDialog() {
     const titleInput = document.createElement('input');
 
     const formButtons = document.createElement('div');
-    const addListButton = document.createElement('button');
+    const editTaskButton = document.createElement('button');
     const resetFormButton = document.createElement('button');
 
     //Assigning text values to dialog elements
     closeDialogButton.textContent = 'X';
-    dialogHeader.textContent = 'Add a List';
+    closeDialogButton.type = 'button';
+    dialogHeader.textContent = 'Edit a List';
 
     titleLabel.textContent = 'Title';
 
-    addListButton.textContent = 'Add';
+    editTaskButton.textContent = 'Edit';
     resetFormButton.textContent = 'Reset';
 
     //Form element properties
     form.method = 'dialog';
 
-    titleLabel.for = 'task-title';
+    titleLabel.for = 'list-title';
     titleLabel.name = 'title';
     titleInput.name = 'title';
     titleInput.type = 'text';
 
-    addListButton.type = 'button';
+    editTaskButton.type = 'button';
     resetFormButton.type = 'reset';
 
     //Assignment of id selectors to dialog elements 
-    listDialog.id = 'add-list-dialog';
+    listDialog.id = 'edit-list-dialog';
     closeDialogButtonContainer.id = 'close-button-container';
     closeDialogButton.id = 'close-button';
     dialogHeaderContainer.id = 'dialog-header-container';
     logoContainer.id = 'logo-container';
     titleInput.id = 'title-input';
 
-    addListButton.id = 'add-list-button';
-
     //Assignment of class selectors to dialog elements
-    titleField.classList.add('list-add-field');
-    titleLabel.classList.add('list-add-label-margin');
-    formButtons.classList.add('list-add-form-buttons');
+    titleField.classList.add('edit-list-field');
+    titleLabel.classList.add('edit-list-label-margin');
+    formButtons.classList.add('edit-list-form-buttons');
 
     //Creating the structure of the dialog
     listDialog.appendChild(form);
@@ -79,39 +75,30 @@ export function createAddListDialog() {
     titleField.appendChild(titleLabel);
     titleField.appendChild(titleInput);
 
-    formButtons.appendChild(addListButton);
+    formButtons.appendChild(editTaskButton);
     formButtons.appendChild(resetFormButton);
 
+    titleInput.value = list.title;
+
     //Adding event listeners to buttons
-    addListButton.addEventListener('click', () => {
-        const listTitle = titleInput.value;
-        const listTasks = [];
+    editTaskButton.addEventListener('click', () => {
+        todoLists[list.id].title = titleInput.value;
 
-        const list = createList(currentListIndex, listTitle, listTasks);
-        incrementCurrentListIndex();
+        const listPanel = todoListPanels[list.id];
 
-        todoLists.push(list);
+        //The position of the task title name inside the task panel
+        listPanel.children[0].children[0].textContent = list.title;
+ 
+        //The position of the list inside the navigation list container 
+        getNavListContainer().children[list.id].textContent = `# ${titleInput.value}`;;
 
-        const listPanel = createListPanel(list);
-        todoListPanels.push(listPanel);
-
-        const listContainerList = document.createElement('span');
-        listContainerList.textContent = `# ${titleInput.value}`;
-
-        getNavListContainer().appendChild(listContainerList);
-
-        getMainContent().appendChild(listPanel);
-
-        listDialog.close();
+        document.body.removeChild(listDialog);
     });
 
     closeDialogButton.addEventListener('click', () => {
         listDialog.close();
+        document.body.removeChild(listDialog);
     });
 
     return listDialog;
-}
-
-export function getAddListDialog() {
-    return document.querySelector('#add-list-dialog')
 }
