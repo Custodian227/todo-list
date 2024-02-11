@@ -1,10 +1,23 @@
-export function createMainContent() {
-    const main = document.createElement('div');
-    main.id = 'main-content';
+//A content container for displaying tasks
+export function createTaskMainContent() {
+    const taskMain = document.createElement('div');
+    taskMain.id = 'task-main';
 
-    return main;
+    return taskMain;
 }
 
-export function getMainContent() {
-    return document.querySelector('#main-content');
+export function getTaskMainContent() {
+    return document.querySelector('#task-main');
+}
+
+//A content container for displaying lists
+export function createListMainContent() {
+    const listMain = document.createElement('div');
+    listMain.id = 'list-main';
+
+    return listMain;
+}
+
+export function getListMainContent() {
+    return document.querySelector('#list-main');
 }

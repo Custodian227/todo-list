@@ -1,8 +1,9 @@
 import { getTaskDialog } from "../dialogs/taskAddDialog";
 import '../../styles/index.css'
 import { getAddListDialog } from "../dialogs/listAddDialog";
-import { getMainContent } from "../main/main";
+import { createListMainContent, createTaskMainContent, getListMainContent, getTaskMainContent } from "../main/main";
 import { todoListPanels, todoTaskPanels } from "../../data/data";
+import { getContentElement } from "../content/contentElement";
 
 export function createNavigation() {
     //Creating all navigation elements
@@ -68,12 +69,19 @@ export function createNavigation() {
 
     //Adding Event listeners to buttons 
     taskButton.addEventListener('click', () => {
-        const mainContent = getMainContent();
-        mainContent.textContent = '';
-
-        todoTaskPanels.forEach(panel => {
-            mainContent.appendChild(panel);
-        });
+        const content = getContentElement();
+        
+        //Check if the content container for the task is present in the content container
+        if(content.children[1].id != 'task-main') {
+            content.removeChild(getListMainContent());
+        
+            const taskMainContent = createTaskMainContent();
+            content.appendChild(taskMainContent);
+    
+            todoTaskPanels.forEach(panel => {
+                taskMainContent.appendChild(panel);
+            });
+        }    
     });
 
     addTaskButton.addEventListener('click', () => {
@@ -81,12 +89,19 @@ export function createNavigation() {
     });
 
     listButton.addEventListener('click', () => {
-        const mainContent = getMainContent();
-        mainContent.textContent = '';
+        const content = getContentElement();
 
-        todoListPanels.forEach(panel => {
-            mainContent.appendChild(panel);
-        });
+        //Check if the content container for the lists is present in the content container
+        if(content.children[1].id != 'list-main') {
+            content.removeChild(getTaskMainContent());
+
+            const listMainContent = createListMainContent();
+            content.appendChild(listMainContent);
+  
+            todoListPanels.forEach(panel => {
+                listMainContent.appendChild(panel);
+            });
+        }  
     });
 
     addListButton.addEventListener('click', () => {

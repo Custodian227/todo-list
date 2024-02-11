@@ -1,4 +1,5 @@
 import '../../styles/listPanel.css';
+import { createListDeleteDialog } from '../dialogs/listDeleteDialog';
 import { createListDetailsDialog } from '../dialogs/listDetailsDialog';
 import { createEditListDialog } from '../dialogs/listEditDialog';
 
@@ -43,6 +44,13 @@ export function createListPanel(list) {
         document.body.appendChild(listEditDialog);
 
         listEditDialog.showModal();
+    });
+
+    deleteButton.addEventListener('click', () => {
+        const listDeleteDialog = createListDeleteDialog(list);
+        document.body.appendChild(listDeleteDialog);
+
+        listDeleteDialog.showModal();
     });
 
     //Creating the structure of the panel

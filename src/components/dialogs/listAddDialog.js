@@ -1,8 +1,9 @@
 import { currentListIndex, incrementCurrentListIndex, todoListPanels, todoLists } from '../../data/data';
 import { createList } from '../../factories/list';
 import '../../styles/listAddDialog.css';
+import { getContentElement } from '../content/contentElement';
 import { createListPanel } from '../list/listPanel';
-import { getMainContent } from '../main/main';
+import { getListMainContent, getMainContent } from '../main/main';
 import { getNavListContainer } from '../navigation/navigation';
 
 export function createAddListDialog() {
@@ -100,7 +101,11 @@ export function createAddListDialog() {
 
         getNavListContainer().appendChild(listContainerList);
 
-        getMainContent().appendChild(listPanel);
+        if(getContentElement().children[1].id == 'list-main') {
+            getListMainContent().appendChild(listPanel);
+        }
+
+        clearAddListForm(titleInput);
 
         listDialog.close();
     });
@@ -114,4 +119,8 @@ export function createAddListDialog() {
 
 export function getAddListDialog() {
     return document.querySelector('#add-list-dialog')
+}
+
+function clearAddListForm(titleInput) {
+    titleInput.value = '';
 }

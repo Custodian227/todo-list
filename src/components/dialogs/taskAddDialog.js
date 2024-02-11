@@ -2,8 +2,9 @@ import '../../styles/taskAddDialog.css';
 import { currentTaskIndex, incrementCurrentTaskIndex, todoTaskPanels, todoTasks } from '../../data/data';
 import { createTask } from '../../factories/task';
 import { formatDisplayDueDate } from '../../helpers/date';
-import { getMainContent } from '../main/main';
+import { getTaskMainContent } from '../main/main';
 import { createTaskPanel } from '../task/taskPanel';
+import { getContentElement } from '../content/contentElement';
 
 export function createAddTaskDialog() {
     //Creating all dialog elements
@@ -182,9 +183,11 @@ export function createAddTaskDialog() {
 
         incrementCurrentTaskIndex();
 
-        clearAddTaskForm(titleInput, descriptionArea, dueDateInput, prioritySelect);
+        if(getContentElement().children[1].id == 'task-main') {
+            getTaskMainContent().appendChild(panel);
+        }
 
-        getMainContent().appendChild(panel);
+        clearAddTaskForm(titleInput, descriptionArea, dueDateInput, prioritySelect);
     });
 
     closeDialogButton.addEventListener('click', () => {

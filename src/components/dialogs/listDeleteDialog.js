@@ -1,8 +1,9 @@
 import '../../styles/deleteDialog.css';
-import { todoTaskPanels, todoTasks } from '../../data/data';
-import { getTaskMainContent } from '../main/main';
+import { todoListPanels, todoLists, } from '../../data/data';
+import { getListMainContent, getMainContent } from '../main/main';
+import { getNavListContainer } from '../navigation/navigation';
 
-export function createTaskDeleteDialog(task) {
+export function createListDeleteDialog(list) {
     const dialog = document.createElement('dialog');
     const form = document.createElement('form');
 
@@ -37,18 +38,21 @@ export function createTaskDeleteDialog(task) {
 
     //Attaching an event listener to the close dialog button
     yesButton.addEventListener('click', () => {
-        const mainContent = getTaskMainContent();
-        const mainContentPanels= Array.from(mainContent.children);
+        const listMainContent = getListMainContent();
+        const listMainContentPanels= Array.from(listMainContent.children);
 
-        mainContentPanels.forEach(panel => {
-            if(+panel.dataset.id === task.id) {
-                mainContent.removeChild(panel);
+        listMainContentPanels.forEach(panel => {
+            if(+panel.dataset.id === list.id) {
+                listMainContent.removeChild(panel);
             }
         });
 
-        delete todoTasks[task.id];
-        delete todoTaskPanels[task.id];
+        delete todoLists[list.id];
+        delete todoListPanels[list.id];
 
+        getNavListContainer().removeChild(getNavListContainer().children[list.id]);
+
+        dialog.close();
         document.body.removeChild(dialog);
     });
 
