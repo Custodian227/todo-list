@@ -79,26 +79,11 @@ nav button {
     margin-bottom: 4rem;
 }
 
-.nav-add-field {
-    display: flex;
-    align-items: center;
-    padding-right: 2rem;
-}
-
 .start-button {
     flex: 1;
     padding: 1.5rem;
     text-align: start;
-}
-
-.add-button {
-    height: 75%;
-    aspect-ratio: 1 / 1;
-    padding: 1.25rem;
-    text-align: center;
-    background-image: url(../assets/icons/icons8-plus.png);
-    background-size: contain;
-    border-radius: 25%;
+    width: 100%;
 }
 
 #list-container {
@@ -133,14 +118,47 @@ nav span {
     /* Firefox */
 }
 
-#task-main { 
+#task-main-content { 
     width: 100%;
-    padding: 4rem;
+    padding: 0rem 4rem;
     overflow-y: scroll;
 }
 
-#list-main {
+#task-main-content > button {
+    margin: 1rem 0rem 2rem 0rem;
+    font-family: Dosis-Medium;
+    font-size: 1.2rem;
+    color: var(--app-primary-color);
+    border-style: none;
+    border-bottom: 2px solid var(--app-primary-color);
+}
+
+#list-main-content {
     width: 100%;
-    padding: 4rem;
+    padding: 0rem 4rem;
     overflow-y: scroll;
+}
+
+#list-main-content > button {
+    margin: 1rem 0rem 2rem 0rem;
+    font-family: Dosis-Medium;
+    font-size: 1.2rem;
+    color: var(--app-primary-color);
+    border-style: none;
+    border-bottom: 2px solid var(--app-primary-color);
+}
+
+#list-tasks-main-content {
+    width: 100%;
+    padding: 0rem 4rem;
+    overflow-y: scroll;
+}
+
+#list-tasks-main-content > button {
+    margin: 1rem 0rem 2rem 0rem;
+    font-family: Dosis-Medium;
+    font-size: 1.2rem;
+    color: var(--app-primary-color);
+    border-style: none;
+    border-bottom: 2px solid var(--app-primary-color);
 }

@@ -1,0 +1,150 @@
+@font-face {
+    font-family: Dosis-Medium;
+    src: url(../../../../fonts/Dosis/static/Dosis-Medium.ttf);
+}
+
+#edit-list-task-dialog {
+    position: relative;
+    margin: auto;
+    width: max(40%, 700px);
+    height: fit-content;
+    padding: 2rem;
+    font-family: Dosis-Medium;
+    border-style: none;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px 0px var(--box-shadow-color);
+}
+
+#eltd-close-button-container {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+#eltd-close-button {
+    padding: 0.5rem 0.7rem;
+    background-color: var(--app-primary-color);
+    border-style: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#eltd-dialog-header-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+#eltd-logo-container {
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    background-image: url(../../../../assets/icons/icons8-checkmark.png);
+    background-size: contain;
+    margin-right: 0.5rem;
+}
+
+#edit-task-dialog h2 {
+    font-size: 3rem;
+    color: var(--app-primary-color);
+}
+
+.eltd-edit-field {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--form-element-text-color);
+}
+
+.eltd-edit-field textarea {
+    font-family: Dosis-Medium;
+    font-size: 1.2rem;
+    border-style: none;
+    outline: 1px solid var(--form-element-text-color);
+    padding: 0.5rem;
+}
+
+#eltd-priority-label-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+#eltd-priority-box-container {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: white;
+}
+
+#eltd-priority-label-container > div > div{
+    width: 20px;
+    height: 20px;
+    margin-right: 0.3rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eltd-high-priority-box {
+    background-color: var(--high-priority-color);
+}
+
+.eltd-medium-priority-box {
+    background-color: var(--medium-priority-color);
+}
+
+.eltd-low-priority-box {
+    background-color: var(--low-priority-color);
+}
+
+#edit-task-dialog label{
+    font-size: 1.5rem;
+    color: var(--form-element-text-color);
+}
+
+.eltd-label-margin {
+    margin-bottom: 0.5rem;
+}
+
+#edit-list-task-dialog input{
+    font-size: 1.5rem;
+    line-height: 3rem;
+    border-style: none;
+    color: var(--form-element-text-color);
+    outline: 1px solid var(--form-element-text-color);
+    padding: 0rem 0.5rem;
+    font-family: Dosis-Medium;
+}
+
+#edit-list-task-dialog select{
+    font-size: 1.3rem;
+    height: 3.3rem;
+    border-style: none;
+    color: var(--form-element-text-color);
+    outline: 1px solid var(--form-element-text-color);
+    padding: 0rem 0.5rem;
+    font-family: Dosis-Medium;
+}
+
+.eltd-form-buttons {
+    margin-top: 4rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.eltd-form-buttons button {
+    flex: 1;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    font-family: Dosis-Medium;
+    background-color: var(--app-primary-color);
+    color: white;
+    border-style: none;
+    border-radius: 5px;
+}
+
+

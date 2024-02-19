@@ -1,0 +1,56 @@
+@font-face {
+    font-family: Dosis-Medium;
+    src: url(../../../../fonts/Dosis/static/Dosis-Medium.ttf);
+}
+
+#list-task-delete-dialog {
+    position: relative;
+    margin: auto;
+    width: max(40%, 700px);
+    height: fit-content;
+    padding: 2rem;
+    font-family: Dosis-Medium;
+    border-style: none;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px 0px var(--box-shadow-color);
+}
+
+#ltrd-dialog-header-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--app-primary-color);
+}
+
+#ltrd-logo-container {
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    background-image: url(../../../../assets/icons/icons8-checkmark.png);
+    background-size: contain;
+    margin-right: 0.5rem;
+}
+
+.ltrd-delete-field {
+    margin-bottom: 2rem;
+    color: black;
+    font-size: 1.5rem; 
+}
+
+.ltrd-delete-form-buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.ltrd-delete-form-buttons button {
+    flex: 1;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    font-family: Dosis-Medium;
+    background-color: var(--app-primary-color);
+    color: white;
+    border-style: none;
+    border-radius: 5px;
+}
+

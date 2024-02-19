@@ -1,14 +1,14 @@
-export const todoTasks = [];
-export const todoLists = [];
+export const individualTasks = [];
+export const lists = [];
 
-export const todoTaskPanels = [];
-export const todoListPanels = [];
+export const listTasks = [];
+export const listTaskPanels = [];
 
-export let currentTaskIndex = 0;
+export let currentIndividualTaskIndex = 0;
 export let currentListIndex = 0;
 
 export function incrementCurrentTaskIndex() {
-    currentTaskIndex++;
+    currentIndividualTaskIndex++;
 }
 
 export function incrementCurrentListIndex() {
