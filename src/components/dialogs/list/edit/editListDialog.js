@@ -1,8 +1,7 @@
 import './editListDialog.css';
 import { lists } from "../../../../data/data";
 import { getNavListContainer } from '../../../navigation/navigation';
-import { getMainContentListContainer } from '../../../main/main';
-import { createListPanel } from '../../../panels/list/listPanel';
+import { loadLists } from '../../../../helpers/load';
 
 export function createEditListDialog(list) {
     //Creating all dialog elements
@@ -87,13 +86,10 @@ export function createEditListDialog(list) {
     editTaskButton.addEventListener('click', () => {
         lists[list.id].title = titleInput.value;
 
-        const mainContentListContainer = getMainContentListContainer();
-        mainContentListContainer.textContent = '';
-
-        //Reload list panels after edit
-        lists.forEach(list => {
-            mainContentListContainer.appendChild(createListPanel(list));
-        });
+        const navListContainer = getNavListContainer();
+        navListContainer.children[list.id].textContent = `# ${titleInput.value}`;
+        
+        loadLists();
 
         document.body.removeChild(listDialog);
     });

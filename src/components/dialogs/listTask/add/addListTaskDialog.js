@@ -4,7 +4,7 @@ import { formatDisplayDueDate } from '../../../../helpers/date';
 import { getMainContentListTasksContainer } from '../../../main/main';
 import { getContentElement } from '../../../content/contentElement';
 import { createListTask } from '../../../../factories/listTask';
-import { createListTaskPanel } from '../../../panels/listTask/listTaskPanel';
+import { loadListTasks } from '../../../../helpers/load';
 
 export function createAddListTaskDialog() {
     //Creating all dialog elements
@@ -175,21 +175,16 @@ export function createAddListTaskDialog() {
         let taskPriority = prioritySelect.value;
 
         const listTasksMainContent = getMainContentListTasksContainer();
-        let listId = +listTasksMainContent.parentElement.dataset.id;
 
+        let listId = +listTasksMainContent.parentElement.dataset.id;
         const list = lists[listId];
 
-        //Creating a task object
         const listTask =  createListTask(list.currentListTaskCounter, taskTitle, taskDescription, taskDueDate, taskPriority, false, listId);
         list.tasks.push(listTask);
         list.currentListTaskCounter++;
 
-        //Creating a panel for the task object
-        const panel = createListTaskPanel(listTask);
-        panel.dataset.id = listTask.id;
-
         if(getContentElement().children[1].id == 'list-tasks-main-content') {
-            listTasksMainContent.appendChild(panel);
+            loadListTasks(list);
         }
 
         clearAddListTaskForm(titleInput, descriptionArea, dueDateInput, prioritySelect);

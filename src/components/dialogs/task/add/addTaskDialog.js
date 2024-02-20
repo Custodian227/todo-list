@@ -2,9 +2,8 @@ import './addTaskDialog.css';
 import { currentIndividualTaskIndex, incrementCurrentTaskIndex, individualTasks } from '../../../../data/data';
 import { createTask } from '../../../../factories/task';
 import { formatDisplayDueDate } from '../../../../helpers/date';
-import { getMainContentTaskContainer } from '../../../main/main';
-import { createTaskPanel } from '../../../panels/task/taskPanel';
 import { getContentElement } from '../../../content/contentElement';
+import { loadIndividualTasks } from '../../../../helpers/load';
 
 export function createAddTaskDialog() {
     //Creating all dialog elements
@@ -178,14 +177,10 @@ export function createAddTaskDialog() {
         const task = createTask(currentIndividualTaskIndex, taskTitle, taskDescription, taskDueDate, false, taskPriority);
         individualTasks.push(task);
 
-        //Creating a panel for the task object
-        const panel = createTaskPanel(task);
-
         incrementCurrentTaskIndex();
 
-        //Add the task panel to the taskContainer if the container is present
         if(getContentElement().children[1].id == 'task-main-content') {
-            getMainContentTaskContainer().appendChild(panel);
+            loadIndividualTasks();
         }
 
         clearAddTaskForm(titleInput, descriptionArea, dueDateInput, prioritySelect);

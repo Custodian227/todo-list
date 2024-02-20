@@ -1,6 +1,4 @@
 import './listTaskPanel.css';
-import { createTaskDeleteDialog } from '../../dialogs/task/delete/taskDeleteDialog';
-import { createEditTaskDialog } from '../../dialogs/task/edit/editTaskDialog';
 import { createListTaskDetailsDialog } from '../../dialogs/listTask/details/listTaskDetailsDialog';
 import { createEditListTaskDialog } from '../../dialogs/listTask/edit/editListTaskDialog';
 import { createListTaskDeleteDialog } from '../../dialogs/listTask/delete/listTaskDeleteDialog';

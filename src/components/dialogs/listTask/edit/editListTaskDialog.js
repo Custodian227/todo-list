@@ -1,7 +1,7 @@
 import { lists } from '../../../../data/data';
 import { formatDisplayDueDate, formatSQLDueDate } from '../../../../helpers/date';
-import { getMainContentListTasksContainer } from '../../../main/main';
-import { createListTaskPanel } from '../../../panels/listTask/listTaskPanel';
+import { loadListTasks, loadTodayTasks } from '../../../../helpers/load';
+import { getContentElement } from '../../../content/contentElement';
 import './editListTaskDialog.css';
 
 export function createEditListTaskDialog(listTask) {
@@ -179,23 +179,21 @@ export function createEditListTaskDialog(listTask) {
 
     //Adding event listeners to buttons
     editTaskButton.addEventListener('click', () => {
-        const listTasksMainContent = getMainContentListTasksContainer();
-
-        //Finding the proper list with the content element that is specific to it
-        let listId = +listTasksMainContent.parentElement.dataset.id;
-        let list = lists[listId];
+        const list = lists[listTask.listId];
 
         list.tasks[listTask.id].title = titleInput.value;
         list.tasks[listTask.id].description = descriptionArea.value;
         list.tasks[listTask.id].dueDate = formatDisplayDueDate(dueDateInput.value);
         list.tasks[listTask.id].priority = prioritySelect.value;
-        
-        listTasksMainContent.textContent = '';
 
-        //Reload list task panels after edit
-        list.tasks.forEach(listTask => {
-            listTasksMainContent.appendChild(createListTaskPanel(listTask));
-        });
+        const contentElement = getContentElement();
+
+        if(contentElement.children[1].id == 'list-tasks-main-content') {
+            loadListTasks(list);
+        }
+        if(contentElement.children[1].id == 'today-tasks-main-content') {
+            loadTodayTasks();
+        }
 
         document.body.removeChild(dialog);
     });

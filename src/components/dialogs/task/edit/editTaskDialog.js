@@ -1,7 +1,7 @@
-import { individualTaskPanels, individualTasks } from '../../../../data/data';
+import { individualTasks } from '../../../../data/data';
 import { formatDisplayDueDate, formatSQLDueDate } from '../../../../helpers/date';
-import { getMainContentTaskContainer } from '../../../main/main';
-import { createTaskPanel } from '../../../panels/task/taskPanel';
+import { loadIndividualTasks, loadTodayTasks } from '../../../../helpers/load';
+import { getContentElement } from '../../../content/contentElement';
 import './editTaskDialog.css';
 
 export function createEditTaskDialog(task) {
@@ -183,15 +183,16 @@ export function createEditTaskDialog(task) {
         individualTasks[task.id].description = descriptionArea.value;
         individualTasks[task.id].dueDate = formatDisplayDueDate(dueDateInput.value);
         individualTasks[task.id].priority = prioritySelect.value;
+
+        const contentElement = getContentElement();
         
-        const mainContentTaskContainer = getMainContentTaskContainer();
-        mainContentTaskContainer.textContent = '';
-
-        //Reload task panels after edit
-        individualTasks.forEach(task => {
-            mainContentTaskContainer.appendChild(createTaskPanel(task));
-        });
-
+        if(contentElement.children[1].id == 'task-main-content') {
+            loadIndividualTasks();
+        }
+        if(contentElement.children[1].id == 'today-tasks-main-content') {
+            loadTodayTasks();
+        }
+    
         document.body.removeChild(dialog);
     });
 

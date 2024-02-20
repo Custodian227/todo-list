@@ -2,10 +2,9 @@ import { currentListIndex, incrementCurrentListIndex, lists } from '../../../../
 import { createList } from '../../../../factories/list';
 import './addListDialog.css';
 import { getContentElement } from '../../../content/contentElement';
-import { createListPanel } from '../../../panels/list/listPanel';
-import { createListTasksMainContent, getMainContentListContainer } from '../../../main/main';
+import { createListTasksMainContent } from '../../../main/main';
 import { getNavListContainer } from '../../../navigation/navigation';
-import { createListTaskPanel } from '../../../panels/listTask/listTaskPanel';
+import { loadListTasks, loadLists } from '../../../../helpers/load';
 
 export function createAddListDialog() {
     //Creating all dialog elements
@@ -93,36 +92,31 @@ export function createAddListDialog() {
         //Creating a list
         const list = createList(currentListIndex, listTitle, listTasks, 0);
         lists.push(list);
-        
-        //Creating a list panel
-        const listPanel = createListPanel(list);
 
         //Creating a list span inside the navigation
         const listContainerSpan = document.createElement('span');
         listContainerSpan.textContent = `# ${titleInput.value}`;
         listContainerSpan.dataset.id = list.id;
 
+        const content = getContentElement();
+
         listContainerSpan.addEventListener('click', () => {
-            const content = getContentElement();
             content.removeChild(content.children[1]);
 
             const listTasksMainContent = createListTasksMainContent();
             listTasksMainContent.dataset.id = list.id;
 
-            list.tasks.forEach(listTask => {
-                listTasksMainContent.children[1].appendChild(createListTaskPanel(listTask));
-            });
-
             content.appendChild(listTasksMainContent);
-        });
 
-        incrementCurrentListIndex();
+            loadListTasks(list);
+        });
 
         getNavListContainer().appendChild(listContainerSpan);
 
-        //Check if the list main conteiner is present to add a list to it
+        incrementCurrentListIndex();
+        
         if(getContentElement().children[1].id == 'list-main-content') {
-            getMainContentListContainer().appendChild(listPanel);
+            loadLists();
         }
 
         clearAddListForm(titleInput);

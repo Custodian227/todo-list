@@ -1,8 +1,7 @@
 import './listDeleteDialog.css';
 import { lists, } from '../../../../data/data';
-import { getMainContentListContainer } from '../../../main/main';
 import { getNavListContainer } from '../../../navigation/navigation';
-import { createListPanel } from '../../../panels/list/listPanel';
+import { loadLists } from '../../../../helpers/load';
 
 export function createListDeleteDialog(list) {
     const dialog = document.createElement('dialog');
@@ -39,16 +38,12 @@ export function createListDeleteDialog(list) {
 
     //Attaching an event listener to the close dialog button
     yesButton.addEventListener('click', () => {
-        const mainContentListContainer = getMainContentListContainer();
-        mainContentListContainer.textContent = '';
-
         delete lists[list.id];
-        getNavListContainer().removeChild(getNavListContainer().children[list.id]);
 
-        //Reload list panels after delete
-        lists.forEach(list => {
-            mainContentListContainer.appendChild(createListPanel(list));
-        });
+        const navListContainer = getNavListContainer();
+        navListContainer.removeChild(navListContainer.children[list.id]);
+
+        loadLists();
 
         document.body.removeChild(dialog);
     });

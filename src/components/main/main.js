@@ -78,3 +78,23 @@ export function createListTasksMainContent() {
 export function getMainContentListTasksContainer() {
     return document.querySelector('#list-tasks-main-task-container');
 }
+
+export function createTodayTasksMainContent() {
+    const taskMainContent = document.createElement('div');
+    const taskTodayParagraph = document.createElement('p');
+    const tasksContainer = document.createElement('div');
+
+    taskMainContent.id = 'today-tasks-main-content';
+    tasksContainer.id = 'today-tasks-main-container';
+
+    taskTodayParagraph.textContent = 'Tasks for today';
+
+    taskMainContent.appendChild(taskTodayParagraph);
+    taskMainContent.appendChild(tasksContainer);
+
+    return taskMainContent;
+}
+
+export function getMainContentTodayTasksContainer() {
+    return document.querySelector('#today-tasks-main-container');
+}

@@ -1,9 +1,7 @@
 import '../../styles/index.css'
-import { createListMainContent, createTaskMainContent, getMainContentListContainer, getMainContentTaskContainer } from "../main/main";
-import { individualTasks, lists } from "../../data/data";
+import { createListMainContent, createTaskMainContent, createTodayTasksMainContent } from "../main/main";
 import { getContentElement } from "../content/contentElement";
-import { createTaskPanel } from '../panels/task/taskPanel';
-import { createListPanel } from '../panels/list/listPanel';
+import { loadIndividualTasks, loadLists, loadTodayTasks } from '../../helpers/load';
 
 export function createNavigation() {
     //Creating all navigation elements
@@ -58,32 +56,33 @@ export function createNavigation() {
     taskButton.addEventListener('click', () => {
         const content = getContentElement();
         
-        //Check if the content container for the task is present in the content container
         if(content.children[1].id != 'task-main-content') {
             content.removeChild(content.children[1]);
-        
             content.appendChild(createTaskMainContent());
 
-            //load individual tasks
-            individualTasks.forEach(task => {
-                getMainContentTaskContainer().appendChild(createTaskPanel(task));
-            });
+            loadIndividualTasks();
         }    
+    });
+
+    todayButton.addEventListener('click', () => {
+        const content = getContentElement();
+
+        if(content.children[1].id != 'today-tasks-main-content') {
+            content.removeChild(content.children[1]);
+            content.appendChild(createTodayTasksMainContent());
+
+            loadTodayTasks();
+        }
     });
 
     listButton.addEventListener('click', () => {
         const content = getContentElement();
 
-        //Check if the content container for the lists is present in the content container
         if(content.children[1].id != 'list-main-content') {
             content.removeChild(content.children[1]);
-
             content.appendChild(createListMainContent());
   
-            //Load lists
-            lists.forEach(list => {
-                getMainContentListContainer().appendChild(createListPanel(list));
-            });
+            loadLists();
         }  
     });
 

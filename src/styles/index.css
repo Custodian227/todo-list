@@ -162,3 +162,18 @@ nav span {
     border-style: none;
     border-bottom: 2px solid var(--app-primary-color);
 }
+
+#today-tasks-main-content {
+    width: 100%;
+    padding: 0rem 4rem;
+    overflow-y: scroll;
+}
+
+#today-tasks-main-content > p{
+    margin: 1rem 0rem 2rem 0rem;
+    width: fit-content;
+    color: var(--app-primary-color);
+    font-size: 1.2rem;
+    font-family: Dosis-Medium;
+    border-bottom: 2px solid transparent;
+}

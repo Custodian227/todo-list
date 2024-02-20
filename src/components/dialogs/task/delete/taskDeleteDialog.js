@@ -1,7 +1,7 @@
 import './taskDeleteDialog.css';
 import { individualTasks } from '../../../../data/data';
-import { getMainContentTaskContainer } from '../../../main/main';
-import { createTaskPanel } from '../../../panels/task/taskPanel';
+import { getContentElement } from '../../../content/contentElement';
+import { loadIndividualTasks, loadTodayTasks } from '../../../../helpers/load';
 
 export function createTaskDeleteDialog(task) {
     const dialog = document.createElement('dialog');
@@ -38,16 +38,16 @@ export function createTaskDeleteDialog(task) {
 
     //Attaching an event listener to the close dialog button
     yesButton.addEventListener('click', () => {
-        const mainContentTaskContainer = getMainContentTaskContainer();
-        mainContentTaskContainer.textContent = '';
-
-        //remove the task from the task array
         delete individualTasks[task.id];
 
-        //reload task panels after delete
-        individualTasks.forEach(task => { 
-            mainContentTaskContainer.appendChild(createTaskPanel(task));
-        });
+        const contentElement = getContentElement();
+
+        if(contentElement.children[1].id == 'task-main-content') {
+            loadIndividualTasks();
+        }
+        if(contentElement.children[1].id == 'today-tasks-main-content') {
+            loadTodayTasks();
+        }
 
         document.body.removeChild(dialog);
     });

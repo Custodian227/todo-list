@@ -4,7 +4,6 @@ import { createListDetailsDialog } from '../../dialogs/list/details/listDetailsD
 import { createEditListDialog } from '../../dialogs/list/edit/editListDialog';
 import { getContentElement } from '../../content/contentElement';
 import { createListTasksMainContent } from '../../main/main';
-import { listTaskPanels } from '../../../data/data';
 import { createListTaskPanel } from '../listTask/listTaskPanel';
 
 export function createListPanel(list) {

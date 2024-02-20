@@ -1,7 +1,7 @@
 import './listTaskDeleteDialog.css';
+import { loadListTasks, loadTodayTasks } from '../../../../helpers/load';
+import { getContentElement } from '../../../content/contentElement';
 import { lists } from '../../../../data/data';
-import { getMainContentListTasksContainer } from '../../../main/main';
-import { createTaskPanel } from '../../../panels/task/taskPanel';
 
 export function createListTaskDeleteDialog(listTask) {
     const dialog = document.createElement('dialog');
@@ -38,21 +38,17 @@ export function createListTaskDeleteDialog(listTask) {
 
     //Attaching an event listener to the close dialog button
     yesButton.addEventListener('click', () => {
-        const mainContentListTaskContainer = getMainContentListTasksContainer();
-
-        //Finding the proper list with the content element that is specific to it
-        const listId = +mainContentListTaskContainer.parentElement.dataset.id;
-        const list = lists[listId]; 
-
-        mainContentListTaskContainer.textContent = '';
-
-        //remove the task from the task array
+        const list = lists[listTask.listId];
         delete list.tasks[listTask.id];
 
-        //reload task panels after delete
-        list.tasks.forEach(listTask => { 
-            mainContentListTaskContainer.appendChild(createTaskPanel(listTask));
-        });
+        const contentElement = getContentElement();
+
+        if(contentElement.children[1].id == 'list-tasks-main-content') {
+            loadListTasks(list);
+        }
+        if(contentElement.children[1].id == 'today-tasks-main-content') {
+            loadTodayTasks();
+        }
 
         document.body.removeChild(dialog);
     });
