@@ -1,5 +1,5 @@
 import './listTaskDeleteDialog.css';
-import { loadListTasks, loadTodayTasks } from '../../../../helpers/load';
+import { loadListTasks, loadThisWeekTasks, loadTodayTasks } from '../../../../helpers/load';
 import { getContentElement } from '../../../content/contentElement';
 import { lists } from '../../../../data/data';
 
@@ -48,6 +48,9 @@ export function createListTaskDeleteDialog(listTask) {
         }
         if(contentElement.children[1].id == 'today-tasks-main-content') {
             loadTodayTasks();
+        }
+        if(contentElement.children[1].id == 'this-week-tasks-main-content') {
+            loadThisWeekTasks();
         }
 
         document.body.removeChild(dialog);

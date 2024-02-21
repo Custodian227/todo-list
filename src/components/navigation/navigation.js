@@ -1,7 +1,7 @@
 import '../../styles/index.css'
-import { createListMainContent, createTaskMainContent, createTodayTasksMainContent } from "../main/main";
+import { createListMainContent, createTaskMainContent, createThisWeekTasksMainContent, createTodayTasksMainContent } from "../main/main";
 import { getContentElement } from "../content/contentElement";
-import { loadIndividualTasks, loadLists, loadTodayTasks } from '../../helpers/load';
+import { loadIndividualTasks, loadLists, loadThisWeekTasks, loadTodayTasks } from '../../helpers/load';
 
 export function createNavigation() {
     //Creating all navigation elements
@@ -72,6 +72,17 @@ export function createNavigation() {
             content.appendChild(createTodayTasksMainContent());
 
             loadTodayTasks();
+        }
+    });
+
+    thisWeekButton.addEventListener('click', () => {
+        const content = getContentElement();
+
+        if(content.children[1].id != 'this-week-tasks-main-content') {
+            content.removeChild(content.children[1]);
+            content.appendChild(createThisWeekTasksMainContent());
+
+            loadThisWeekTasks();
         }
     });
 

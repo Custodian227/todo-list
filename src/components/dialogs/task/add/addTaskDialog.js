@@ -1,7 +1,7 @@
 import './addTaskDialog.css';
 import { currentIndividualTaskIndex, incrementCurrentTaskIndex, individualTasks } from '../../../../data/data';
 import { createTask } from '../../../../factories/task';
-import { formatDisplayDueDate } from '../../../../helpers/date';
+import { formatDueDate } from '../../../../helpers/date';
 import { getContentElement } from '../../../content/contentElement';
 import { loadIndividualTasks } from '../../../../helpers/load';
 
@@ -170,7 +170,7 @@ export function createAddTaskDialog() {
     addTaskButton.addEventListener('click', () => {
         let taskTitle = titleInput.value;
         let taskDescription = descriptionArea.value;
-        let taskDueDate =  formatDisplayDueDate(dueDateInput.value);
+        let taskDueDate =  formatDueDate(dueDateInput.value);
         let taskPriority = prioritySelect.value;
 
         //Creating a task object

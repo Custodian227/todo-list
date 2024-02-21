@@ -80,21 +80,81 @@ export function getMainContentListTasksContainer() {
 }
 
 export function createTodayTasksMainContent() {
-    const taskMainContent = document.createElement('div');
-    const taskTodayParagraph = document.createElement('p');
-    const tasksContainer = document.createElement('div');
+    const todayTaskMainContent = document.createElement('div');
+    const todayTaskParagraph = document.createElement('p');
+    const todayIndividualTasksContainer = document.createElement('div');
+    const todayListTasksContainer = document.createElement('div');
 
-    taskMainContent.id = 'today-tasks-main-content';
-    tasksContainer.id = 'today-tasks-main-container';
+    const individualTaskParagraphContainer = document.createElement('div');
+    const individualTaskParagraph = document.createElement('p');
 
-    taskTodayParagraph.textContent = 'Tasks for today';
+    const listTasksParagraphContainer = document.createElement('div');
+    const listTasksParagraph = document.createElement('p');
 
-    taskMainContent.appendChild(taskTodayParagraph);
-    taskMainContent.appendChild(tasksContainer);
+    todayTaskMainContent.id = 'today-tasks-main-content';
+    todayIndividualTasksContainer.id = 'today-individual-tasks-main-container';
+    todayListTasksContainer.id = 'today-list-tasks-main-container';
 
-    return taskMainContent;
+    todayTaskParagraph.textContent = 'Tasks for today';
+    individualTaskParagraph.textContent = 'INDIVIDUAL TASKS';
+    listTasksParagraph.textContent = 'LIST TASKS';
+
+    individualTaskParagraphContainer.appendChild(individualTaskParagraph);
+    listTasksParagraphContainer.appendChild(listTasksParagraph);
+
+    todayTaskMainContent.appendChild(todayTaskParagraph);
+    todayTaskMainContent.appendChild(individualTaskParagraphContainer);
+    todayTaskMainContent.appendChild(todayIndividualTasksContainer);
+    todayTaskMainContent.appendChild(listTasksParagraphContainer);
+    todayTaskMainContent.appendChild(todayListTasksContainer);
+
+    return todayTaskMainContent;
 }
 
-export function getMainContentTodayTasksContainer() {
-    return document.querySelector('#today-tasks-main-container');
+export function getMainContentTodayIndividualTasksContainer() {
+    return document.querySelector('#today-individual-tasks-main-container');
+}
+
+export function getMainContentTodayListTasksContainer() {
+    return document.querySelector('#today-list-tasks-main-container');
+}
+
+export function createThisWeekTasksMainContent() {
+    const thisWeekTaskMainContent = document.createElement('div');
+    const thisWeekTaskParagraph = document.createElement('p');
+    const thisWeekIndividualTasksContainer = document.createElement('div');
+    const thisWeekListTasksContainer = document.createElement('div');
+
+    const individualTaskParagraphContainer = document.createElement('div');
+    const individualTaskParagraph = document.createElement('p');
+
+    const listTaskParagraphContainer = document.createElement('div');
+    const listTaskParagraph = document.createElement('p');
+
+    thisWeekTaskMainContent.id = 'this-week-tasks-main-content';
+    thisWeekIndividualTasksContainer.id = 'this-week-tasks-main-container';
+    thisWeekListTasksContainer.id = 'this-week-list-tasks-main-container';
+
+    thisWeekTaskParagraph.textContent = 'Tasks in a week';
+    individualTaskParagraph.textContent = 'INDIVIDUAL TASKS';
+    listTaskParagraph.textContent = 'LIST TASKS';
+
+    individualTaskParagraphContainer.appendChild(individualTaskParagraph);
+    listTaskParagraphContainer.appendChild(listTaskParagraph);
+
+    thisWeekTaskMainContent.appendChild(thisWeekTaskParagraph);
+    thisWeekTaskMainContent.appendChild(individualTaskParagraphContainer)
+    thisWeekTaskMainContent.appendChild(thisWeekIndividualTasksContainer);
+    thisWeekTaskMainContent.appendChild(listTaskParagraphContainer);
+    thisWeekTaskMainContent.appendChild(thisWeekListTasksContainer)
+
+    return thisWeekTaskMainContent;
+}
+
+export function getMainContentThisWeekIndividualTasksContainer() {
+    return document.querySelector('#this-week-tasks-main-container');
+}
+
+export function getMainContentThisWeekLIstTasksContainer() {
+    return document.querySelector('#this-week-list-tasks-main-container');
 }

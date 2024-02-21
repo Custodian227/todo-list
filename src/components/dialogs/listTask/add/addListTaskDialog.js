@@ -1,6 +1,6 @@
 import './addListTaskDialog.css';
 import { lists } from '../../../../data/data';
-import { formatDisplayDueDate } from '../../../../helpers/date';
+import { formatDueDate } from '../../../../helpers/date';
 import { getMainContentListTasksContainer } from '../../../main/main';
 import { getContentElement } from '../../../content/contentElement';
 import { createListTask } from '../../../../factories/listTask';
@@ -171,7 +171,7 @@ export function createAddListTaskDialog() {
     addTaskButton.addEventListener('click', () => {
         let taskTitle = titleInput.value;
         let taskDescription = descriptionArea.value;
-        let taskDueDate =  formatDisplayDueDate(dueDateInput.value);
+        let taskDueDate =  formatDueDate(dueDateInput.value);
         let taskPriority = prioritySelect.value;
 
         const listTasksMainContent = getMainContentListTasksContainer();

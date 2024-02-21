@@ -1,6 +1,6 @@
 import { lists } from '../../../../data/data';
-import { formatDisplayDueDate, formatSQLDueDate } from '../../../../helpers/date';
-import { loadListTasks, loadTodayTasks } from '../../../../helpers/load';
+import { formatDueDate, formatSQLDueDate } from '../../../../helpers/date';
+import { loadListTasks, loadThisWeekTasks, loadTodayTasks } from '../../../../helpers/load';
 import { getContentElement } from '../../../content/contentElement';
 import './editListTaskDialog.css';
 
@@ -183,7 +183,7 @@ export function createEditListTaskDialog(listTask) {
 
         list.tasks[listTask.id].title = titleInput.value;
         list.tasks[listTask.id].description = descriptionArea.value;
-        list.tasks[listTask.id].dueDate = formatDisplayDueDate(dueDateInput.value);
+        list.tasks[listTask.id].dueDate = formatDueDate(dueDateInput.value);
         list.tasks[listTask.id].priority = prioritySelect.value;
 
         const contentElement = getContentElement();
@@ -193,6 +193,9 @@ export function createEditListTaskDialog(listTask) {
         }
         if(contentElement.children[1].id == 'today-tasks-main-content') {
             loadTodayTasks();
+        }
+        if(contentElement.children[1].id == 'this-week-tasks-main-content') {
+            loadThisWeekTasks();
         }
 
         document.body.removeChild(dialog);

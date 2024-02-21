@@ -1,7 +1,7 @@
 import './taskDeleteDialog.css';
 import { individualTasks } from '../../../../data/data';
 import { getContentElement } from '../../../content/contentElement';
-import { loadIndividualTasks, loadTodayTasks } from '../../../../helpers/load';
+import { loadIndividualTasks, loadThisWeekTasks, loadTodayTasks } from '../../../../helpers/load';
 
 export function createTaskDeleteDialog(task) {
     const dialog = document.createElement('dialog');
@@ -47,6 +47,9 @@ export function createTaskDeleteDialog(task) {
         }
         if(contentElement.children[1].id == 'today-tasks-main-content') {
             loadTodayTasks();
+        }
+        if(contentElement.children[1].id == 'this-week-tasks-main-content') {
+            loadThisWeekTasks();
         }
 
         document.body.removeChild(dialog);

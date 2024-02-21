@@ -1,6 +1,6 @@
 import { individualTasks } from '../../../../data/data';
-import { formatDisplayDueDate, formatSQLDueDate } from '../../../../helpers/date';
-import { loadIndividualTasks, loadTodayTasks } from '../../../../helpers/load';
+import { formatDueDate, formatSQLDueDate } from '../../../../helpers/date';
+import { loadIndividualTasks, loadThisWeekTasks, loadTodayTasks } from '../../../../helpers/load';
 import { getContentElement } from '../../../content/contentElement';
 import './editTaskDialog.css';
 
@@ -181,7 +181,7 @@ export function createEditTaskDialog(task) {
     editTaskButton.addEventListener('click', () => {
         individualTasks[task.id].title = titleInput.value;
         individualTasks[task.id].description = descriptionArea.value;
-        individualTasks[task.id].dueDate = formatDisplayDueDate(dueDateInput.value);
+        individualTasks[task.id].dueDate = formatDueDate(dueDateInput.value);
         individualTasks[task.id].priority = prioritySelect.value;
 
         const contentElement = getContentElement();
@@ -191,6 +191,9 @@ export function createEditTaskDialog(task) {
         }
         if(contentElement.children[1].id == 'today-tasks-main-content') {
             loadTodayTasks();
+        }
+        if(contentElement.children[1].id == 'this-week-tasks-main-content') {
+            loadThisWeekTasks();
         }
     
         document.body.removeChild(dialog);

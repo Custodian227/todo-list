@@ -177,3 +177,34 @@ nav span {
     font-family: Dosis-Medium;
     border-bottom: 2px solid transparent;
 }
+
+#today-tasks-main-content > div > p{
+    color: var(--form-element-text-color);
+    font-family: Dosis-Medium;
+    margin: 2rem 0rem;
+    width: fit-content;
+    border-bottom: 2px solid var(--form-element-text-color);
+}
+
+#this-week-tasks-main-content {
+    width: 100%;
+    padding: 0rem 4rem;
+    overflow-y: scroll;
+}
+
+#this-week-tasks-main-content > p{
+    margin: 1rem 0rem 2rem 0rem;
+    width: fit-content;
+    color: var(--app-primary-color);
+    font-size: 1.2rem;
+    font-family: Dosis-Medium;
+    border-bottom: 2px solid transparent;
+}
+
+#this-week-tasks-main-content > div > p{
+    color: var(--form-element-text-color);
+    font-family: Dosis-Medium;
+    margin: 2rem 0rem;
+    width: fit-content;
+    border-bottom: 2px solid var(--form-element-text-color);
+}
