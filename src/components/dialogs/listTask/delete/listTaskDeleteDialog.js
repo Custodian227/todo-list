@@ -1,7 +1,7 @@
 import './listTaskDeleteDialog.css';
 import { loadListTasks, loadThisWeekTasks, loadTodayTasks } from '../../../../helpers/load';
 import { getContentElement } from '../../../content/contentElement';
-import { lists } from '../../../../data/data';
+import { getStorageLists, updateStorageLists } from '../../../../data/data';
 
 export function createListTaskDeleteDialog(listTask) {
     const dialog = document.createElement('dialog');
@@ -38,8 +38,12 @@ export function createListTaskDeleteDialog(listTask) {
 
     //Attaching an event listener to the close dialog button
     yesButton.addEventListener('click', () => {
-        const list = lists[listTask.listId];
+        const storageLists = getStorageLists();
+
+        const list = storageLists[listTask.listId];
         delete list.tasks[listTask.id];
+
+        updateStorageLists(storageLists);
 
         const contentElement = getContentElement();
 

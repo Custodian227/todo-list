@@ -1,6 +1,5 @@
 import './editListDialog.css';
-import { lists } from "../../../../data/data";
-import { getNavListContainer } from '../../../navigation/navigation';
+import { getStorageLists, updateStorageLists } from "../../../../data/data";
 import { loadLists } from '../../../../helpers/load';
 
 export function createEditListDialog(list) {
@@ -84,10 +83,10 @@ export function createEditListDialog(list) {
 
     //Adding event listeners to buttons
     editTaskButton.addEventListener('click', () => {
-        lists[list.id].title = titleInput.value;
+        const storageLists = getStorageLists();
+        storageLists[list.id].title = titleInput.value;
 
-        const navListContainer = getNavListContainer();
-        navListContainer.children[list.id].textContent = `# ${titleInput.value}`;
+        updateStorageLists(storageLists);
         
         loadLists();
 

@@ -1,6 +1,5 @@
 import './listDeleteDialog.css';
-import { lists, } from '../../../../data/data';
-import { getNavListContainer } from '../../../navigation/navigation';
+import { getStorageLists, updateStorageLists, } from '../../../../data/data';
 import { loadLists } from '../../../../helpers/load';
 
 export function createListDeleteDialog(list) {
@@ -38,10 +37,10 @@ export function createListDeleteDialog(list) {
 
     //Attaching an event listener to the close dialog button
     yesButton.addEventListener('click', () => {
-        delete lists[list.id];
+        const storageLists = getStorageLists();
+        delete storageLists[list.id];
 
-        const navListContainer = getNavListContainer();
-        navListContainer.removeChild(navListContainer.children[list.id]);
+        updateStorageLists(storageLists);
 
         loadLists();
 

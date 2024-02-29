@@ -1,5 +1,5 @@
 import './taskDeleteDialog.css';
-import { individualTasks } from '../../../../data/data';
+import { getStorageIndividualTasks, updateStorageIndividualTasks } from '../../../../data/data';
 import { getContentElement } from '../../../content/contentElement';
 import { loadIndividualTasks, loadThisWeekTasks, loadTodayTasks } from '../../../../helpers/load';
 
@@ -38,7 +38,11 @@ export function createTaskDeleteDialog(task) {
 
     //Attaching an event listener to the close dialog button
     yesButton.addEventListener('click', () => {
-        delete individualTasks[task.id];
+        const storageIndividualTasks = getStorageIndividualTasks(); 
+        delete storageIndividualTasks[task.id];
+
+        //Update the changes made to the individual task array
+        updateStorageIndividualTasks(storageIndividualTasks);
 
         const contentElement = getContentElement();
 

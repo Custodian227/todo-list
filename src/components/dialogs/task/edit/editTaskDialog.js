@@ -1,4 +1,4 @@
-import { individualTasks } from '../../../../data/data';
+import { getStorageIndividualTasks, updateStorageIndividualTasks } from '../../../../data/data';
 import { formatDueDate, formatSQLDueDate } from '../../../../helpers/date';
 import { loadIndividualTasks, loadThisWeekTasks, loadTodayTasks } from '../../../../helpers/load';
 import { getContentElement } from '../../../content/contentElement';
@@ -179,10 +179,14 @@ export function createEditTaskDialog(task) {
 
     //Adding event listeners to buttons
     editTaskButton.addEventListener('click', () => {
-        individualTasks[task.id].title = titleInput.value;
-        individualTasks[task.id].description = descriptionArea.value;
-        individualTasks[task.id].dueDate = formatDueDate(dueDateInput.value);
-        individualTasks[task.id].priority = prioritySelect.value;
+        const storageIndividualTasks = getStorageIndividualTasks();
+
+        storageIndividualTasks[task.id].title = titleInput.value;
+        storageIndividualTasks[task.id].description = descriptionArea.value;
+        storageIndividualTasks[task.id].dueDate = formatDueDate(dueDateInput.value);
+        storageIndividualTasks[task.id].priority = prioritySelect.value;
+
+        updateStorageIndividualTasks(storageIndividualTasks);
 
         const contentElement = getContentElement();
         

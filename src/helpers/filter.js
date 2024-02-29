@@ -1,24 +1,27 @@
-import { individualTasks, lists } from "../data/data";
+import { getStorageIndividualTasks, getStorageLists } from "../data/data";
 import { checkDueDateInWeek, checkDueDateIsToday } from "./date";
 
 export function getTodayIndividualTasks() {
-    return individualTasks.filter((task) => checkDueDateIsToday(task.dueDate));
+    const storageIndividualTasks = getStorageIndividualTasks();
+    return storageIndividualTasks.filter((task) => task !== null && checkDueDateIsToday(task.dueDate));
 }
 
 export function getTodayListTasks() {
-    const listTasks = [];     
+    const storageLists = getStorageLists();
+    const listTasks = []; 
 
-    lists.forEach(list => {
+    storageLists.forEach(list => {
         list.tasks.forEach(listTask => {
             listTasks.push(listTask);
         });
     });
 
-    return listTasks.filter((listTask) => checkDueDateIsToday(listTask.dueDate));
+    return listTasks.filter((listTask) => listTask !== null && checkDueDateIsToday(listTask.dueDate));
 }
 
 export function getThisWeekIndividualTasks() {
-    const filteredIndividualTasks = individualTasks.filter((task) => checkDueDateInWeek(task.dueDate));
+    const storageIndividualTasks = getStorageIndividualTasks();
+    const filteredIndividualTasks = storageIndividualTasks.filter((task) => task !== null && checkDueDateInWeek(task.dueDate));
     
     return filteredIndividualTasks.sort((firstTask, secondTask) => {
         let firstTasKDueDate = new Date(firstTask.dueDate);
@@ -29,15 +32,16 @@ export function getThisWeekIndividualTasks() {
 }
 
 export function getThisWeekListTasksTasks() {
+    const storageLists = getStorageLists();
     const listTasks = [];   
          
-    lists.forEach(list => {
+    storageLists.forEach(list => {
         list.tasks.forEach(listTask => {
             listTasks.push(listTask);
         });
     });
 
-    const filteredListTasks = listTasks.filter((listTask) => checkDueDateInWeek(listTask.dueDate));
+    const filteredListTasks = listTasks.filter((listTask) => listTask !== null && checkDueDateInWeek(listTask.dueDate));
 
     return filteredListTasks.sort((firstListTask, secondListTask) => {
         let firstListTasKDueDate = new Date(firstListTask.dueDate);

@@ -1,5 +1,5 @@
 import './addTaskDialog.css';
-import { currentIndividualTaskIndex, incrementCurrentTaskIndex, individualTasks } from '../../../../data/data';
+import { getStorageIndividualTasks, getStorageIndividualTasksIndex, updateStorageIndividualTasks, updateStorageIndividualTasksIndex } from '../../../../data/data';
 import { createTask } from '../../../../factories/task';
 import { formatDueDate } from '../../../../helpers/date';
 import { getContentElement } from '../../../content/contentElement';
@@ -173,11 +173,22 @@ export function createAddTaskDialog() {
         let taskDueDate =  formatDueDate(dueDateInput.value);
         let taskPriority = prioritySelect.value;
 
-        //Creating a task object
-        const task = createTask(currentIndividualTaskIndex, taskTitle, taskDescription, taskDueDate, false, taskPriority);
-        individualTasks.push(task);
+        //Getting the current individual task index for tracking the task id
+        let storageIndividualTaskIndex = getStorageIndividualTasksIndex();
 
-        incrementCurrentTaskIndex();
+        //Creating a task object
+        const task = createTask(storageIndividualTaskIndex, taskTitle, taskDescription, taskDueDate, false, taskPriority);
+
+        //Update the changes made to the individual tasks array
+        const storageIndividualTasks = getStorageIndividualTasks();
+        storageIndividualTasks.push(task);
+
+        updateStorageIndividualTasks(storageIndividualTasks);
+        
+        //Updating the index of the individual tasks array
+        storageIndividualTaskIndex++;
+
+        updateStorageIndividualTasksIndex(storageIndividualTaskIndex);
 
         if(getContentElement().children[1].id == 'task-main-content') {
             loadIndividualTasks();

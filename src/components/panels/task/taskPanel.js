@@ -2,6 +2,7 @@ import './taskPanel.css';
 import { createTaskDeleteDialog } from '../../dialogs/task/delete/taskDeleteDialog';
 import { createTaskDetailsDialog } from '../../dialogs/task/details/taskDetailsDialog';
 import { createEditTaskDialog } from '../../dialogs/task/edit/editTaskDialog';
+import { getStorageIndividualTasks, updateStorageIndividualTasks } from '../../../data/data';
 
 
 export function createTaskPanel(task) {
@@ -61,12 +62,18 @@ export function createTaskPanel(task) {
     }
 
     checkboxContainer.addEventListener('click', () => {
+        const storageIndividualTasks = getStorageIndividualTasks();
+
         if(checkbox.checked) {
             task.status = true;
+            storageIndividualTasks[task.id].status = true;
         }
         if(!checkbox.checked) {
             task.status = false;
+            storageIndividualTasks[task.id].status = false;
         }
+
+        updateStorageIndividualTasks(storageIndividualTasks);
     })
 
     //Connecting the panel to the task

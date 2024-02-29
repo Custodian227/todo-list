@@ -1,10 +1,8 @@
-import { currentListIndex, incrementCurrentListIndex, lists } from '../../../../data/data';
+import { getStorageLists, getStorageListsIndex, updateStorageLists, updateStorageListsIndex } from '../../../../data/data';
 import { createList } from '../../../../factories/list';
 import './addListDialog.css';
 import { getContentElement } from '../../../content/contentElement';
-import { createListTasksMainContent } from '../../../main/main';
-import { getNavListContainer } from '../../../navigation/navigation';
-import { loadListTasks, loadLists } from '../../../../helpers/load';
+import { loadLists } from '../../../../helpers/load';
 
 export function createAddListDialog() {
     //Creating all dialog elements
@@ -89,31 +87,17 @@ export function createAddListDialog() {
         const listTitle = titleInput.value;
         const listTasks = [];
 
+        const storageLists = getStorageLists();
+        let storageListsIndex = getStorageListsIndex();
+
         //Creating a list
-        const list = createList(currentListIndex, listTitle, listTasks, 0);
-        lists.push(list);
+        const list = createList(storageListsIndex, listTitle, listTasks, 0);
+        storageLists.push(list);
 
-        //Creating a list span inside the navigation
-        const listContainerSpan = document.createElement('span');
-        listContainerSpan.textContent = `# ${titleInput.value}`;
-        listContainerSpan.dataset.id = list.id;
+        updateStorageLists(storageLists);
 
-        const content = getContentElement();
-
-        listContainerSpan.addEventListener('click', () => {
-            content.removeChild(content.children[1]);
-
-            const listTasksMainContent = createListTasksMainContent();
-            listTasksMainContent.dataset.id = list.id;
-
-            content.appendChild(listTasksMainContent);
-
-            loadListTasks(list);
-        });
-
-        getNavListContainer().appendChild(listContainerSpan);
-
-        incrementCurrentListIndex();
+        storageListsIndex++;
+        updateStorageListsIndex(storageListsIndex);
         
         if(getContentElement().children[1].id == 'list-main-content') {
             loadLists();

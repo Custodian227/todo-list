@@ -1,4 +1,4 @@
-import { lists } from '../../../../data/data';
+import { getStorageLists, updateStorageLists } from '../../../../data/data';
 import { formatDueDate, formatSQLDueDate } from '../../../../helpers/date';
 import { loadListTasks, loadThisWeekTasks, loadTodayTasks } from '../../../../helpers/load';
 import { getContentElement } from '../../../content/contentElement';
@@ -179,12 +179,15 @@ export function createEditListTaskDialog(listTask) {
 
     //Adding event listeners to buttons
     editTaskButton.addEventListener('click', () => {
-        const list = lists[listTask.listId];
+        const storageLists = getStorageLists();
+        const list = storageLists[listTask.listId];
 
         list.tasks[listTask.id].title = titleInput.value;
         list.tasks[listTask.id].description = descriptionArea.value;
         list.tasks[listTask.id].dueDate = formatDueDate(dueDateInput.value);
         list.tasks[listTask.id].priority = prioritySelect.value;
+
+        updateStorageLists(storageLists);
 
         const contentElement = getContentElement();
 

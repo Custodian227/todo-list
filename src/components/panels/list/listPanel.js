@@ -42,7 +42,9 @@ export function createListPanel(list) {
         listTasksMainContent.dataset.id = list.id;
 
         list.tasks.forEach(listTask => {
-            listTasksMainContent.children[1].appendChild(createListTaskPanel(listTask));
+            if(listTask !== null){
+                listTasksMainContent.children[1].appendChild(createListTaskPanel(listTask));
+            }
         });
 
         content.appendChild(listTasksMainContent);

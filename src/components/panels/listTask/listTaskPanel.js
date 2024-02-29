@@ -2,7 +2,7 @@ import './listTaskPanel.css';
 import { createListTaskDetailsDialog } from '../../dialogs/listTask/details/listTaskDetailsDialog';
 import { createEditListTaskDialog } from '../../dialogs/listTask/edit/editListTaskDialog';
 import { createListTaskDeleteDialog } from '../../dialogs/listTask/delete/listTaskDeleteDialog';
-
+import { getStorageLists, updateStorageLists } from '../../../data/data';
 
 export function createListTaskPanel(listTask) {
     const panel = document.createElement('div');
@@ -61,12 +61,18 @@ export function createListTaskPanel(listTask) {
     }
 
     checkboxContainer.addEventListener('click', () => {
+        const storageLists = getStorageLists();
+
         if(checkbox.checked) {
             listTask.status = true;
+            storageLists[listTask.listId].tasks[listTask.id].status = true;
         }
         if(!checkbox.checked) {
             listTask.status = false;
+            storageLists[listTask.listId].tasks[listTask.id].status = false;
         }
+
+        updateStorageLists(storageLists);
     })
 
     //Connecting the panel to the task

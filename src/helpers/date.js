@@ -1,4 +1,4 @@
-import { format, isToday, add, startOfToday, compareAsc, differenceInWeeks, differenceInDays } from "date-fns";
+import { format, isToday, add, startOfToday, compareAsc } from "date-fns";
 
 export function formatDueDate(dueDate) {
     return format(dueDate, 'MM/dd/yyyy');

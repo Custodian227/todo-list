@@ -2,16 +2,20 @@ import { getMainContentListContainer, getMainContentListTasksContainer, getMainC
 import { createListPanel } from "../components/panels/list/listPanel";
 import { createListTaskPanel } from "../components/panels/listTask/listTaskPanel";
 import { createTaskPanel } from "../components/panels/task/taskPanel";
-import { individualTasks, lists } from "../data/data";
+import { getStorageIndividualTasks, getStorageLists, } from "../data/data";
 import { getThisWeekIndividualTasks, getThisWeekListTasksTasks, getTodayIndividualTasks, getTodayListTasks } from "./filter";
 
 export function loadIndividualTasks() {
     const mainContentTaskContainer = getMainContentTaskContainer();
     mainContentTaskContainer.textContent = '';
 
+    const storageIndividualTasks = getStorageIndividualTasks();
+
     //Reload all individual tasks
-    individualTasks.forEach(task => {
-        mainContentTaskContainer.appendChild(createTaskPanel(task));
+    storageIndividualTasks.forEach(task => {
+        if(task !== null){
+            mainContentTaskContainer.appendChild(createTaskPanel(task));
+        }
     });
 }
 
@@ -19,8 +23,12 @@ export function loadLists() {
     const mainContentListContainer = getMainContentListContainer();
     mainContentListContainer.textContent = '';
 
-    lists.forEach(list => {
-        mainContentListContainer.appendChild(createListPanel(list));
+    const storageLists = getStorageLists();
+
+    storageLists.forEach(list => {
+        if(list !== null) {
+            mainContentListContainer.appendChild(createListPanel(list));
+        }
     });
 }
 
@@ -29,7 +37,9 @@ export function loadListTasks(list) {
     mainContentListTaskContainer.textContent = '';
 
     list.tasks.forEach(listTask => {
-        mainContentListTaskContainer.appendChild(createListTaskPanel(listTask));
+        if(listTask !== null) {
+            mainContentListTaskContainer.appendChild(createListTaskPanel(listTask));
+        }
     });
 }
 

@@ -1,5 +1,5 @@
 import './addListTaskDialog.css';
-import { lists } from '../../../../data/data';
+import { getStorageLists, updateStorageLists } from '../../../../data/data';
 import { formatDueDate } from '../../../../helpers/date';
 import { getMainContentListTasksContainer } from '../../../main/main';
 import { getContentElement } from '../../../content/contentElement';
@@ -175,13 +175,17 @@ export function createAddListTaskDialog() {
         let taskPriority = prioritySelect.value;
 
         const listTasksMainContent = getMainContentListTasksContainer();
+        
+        const storageLists = getStorageLists();
 
         let listId = +listTasksMainContent.parentElement.dataset.id;
-        const list = lists[listId];
+        const list = storageLists[listId];
 
-        const listTask =  createListTask(list.currentListTaskCounter, taskTitle, taskDescription, taskDueDate, taskPriority, false, listId);
+        const listTask = createListTask(list.currentListTaskCounter, taskTitle, taskDescription, taskDueDate, taskPriority, false, listId);
         list.tasks.push(listTask);
         list.currentListTaskCounter++;
+
+        updateStorageLists(storageLists);
 
         if(getContentElement().children[1].id == 'list-tasks-main-content') {
             loadListTasks(list);

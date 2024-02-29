@@ -53,7 +53,16 @@ export function createListDetailsDialog(list) {
 
     //Initialization of values that depend on the task object
     titleValue.textContent = list.title;
-    numberOfTasksValue.textContent = list.tasks.length;
+
+    let taskCounter = 0;
+
+    list.tasks.forEach(listTask => {
+        if(listTask !== null) {
+            taskCounter++;
+        }
+    });
+
+    numberOfTasksValue.textContent = taskCounter;
 
     //Attaching an event listener to the close dialog button
     closeDialogButton.addEventListener('click', () => {
